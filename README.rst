@@ -60,8 +60,8 @@ Crossbar
 ^^^^^^^^^^^^^^^^^^^^^
 Install crossbar on the Iotronic host::
 
-    apt install python-pip python3-pip libsnappy-dev libssl-dev libffi-dev python-dev
-    pip3 install python-snappy crossbar
+    apt install python3-pip libsnappy-dev libssl-dev libffi-dev python3-dev
+    pip install python-snappy crossbar
 
 Configuration::
 
@@ -157,8 +157,8 @@ add the user iotronic::
 and Iotronic::
 
     cd iotronic
-    pip3 install -r requirements.txt 
-    python3 setup.py install
+    pip install -r requirements.txt
+    python setup.py install
 
 create a log dir::
 
