@@ -7,8 +7,8 @@ IoTronic is an Internet of Things resource management service for OpenStack clou
 IoTronic allows to manage Internet of Things resources as part of an OpenStack data center.
 
 * Free software: Apache license
-* Source: http://git.openstack.org/git/openstack/iotronic
-* Bugs: http://bugs.launchpad.net/iotronic
+* Upstream source: http://git.openstack.org/git/openstack/iotronic
+* This repository: Python 3 / 3.12 port of the service
 
 .. contents:: Contents:
    :local:
@@ -35,8 +35,8 @@ Creation of the database
 On the dbms create the iotronic db and configure the access for the user iotronic::
 
     MariaDB [(none)]> CREATE DATABASE iotronic;
-    MariaDB [(none)]> GRANT ALL PRIVILEGES ON iotronic.* TO iotronic@'localhost' IDENTIFIED BY ‘IOTRONIC_DBPASS’;
-    MariaDB [(none)]> GRANT ALL PRIVILEGES ON iotronic.* TO iotronic@'%' IDENTIFIED BY ‘IOTRONIC_DBPASS’;
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON iotronic.* TO iotronic@'localhost' IDENTIFIED BY 'IOTRONIC_DBPASS';
+    MariaDB [(none)]> GRANT ALL PRIVILEGES ON iotronic.* TO iotronic@'%' IDENTIFIED BY 'IOTRONIC_DBPASS';
 
 Add the user and the enpoints on Keystone::
 
