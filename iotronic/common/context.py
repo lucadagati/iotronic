@@ -37,10 +37,10 @@ class RequestContext(context.RequestContext):
         # TODO(vdrok): remove all of these apart from is_public_api and
         # project_name after deprecation period
         policy_values.update({
-            'user': self.user,
-            'domain_id': self.user_domain,
+            'user': self.user_id,
+            'domain_id': self.user_domain_id,
             'domain_name': self.user_domain_name,
-            'tenant': self.tenant,
+            'tenant': self.project_id,
             'project_name': self.project_name,
             'is_public_api': self.is_public_api,
         })
@@ -49,13 +49,13 @@ class RequestContext(context.RequestContext):
     def to_dict(self):
         # TODO(vdrok): reuse the base class to_dict in Pike
         return {'auth_token': self.auth_token,
-                'user': self.user,
-                'tenant': self.tenant,
+                'user': self.user_id,
+                'tenant': self.project_id,
                 'is_admin': self.is_admin,
                 'read_only': self.read_only,
                 'show_deleted': self.show_deleted,
                 'request_id': self.request_id,
-                'domain_id': self.user_domain,
+                'domain_id': self.user_domain_id,
                 'roles': self.roles,
                 'domain_name': self.user_domain_name,
                 'is_public_api': self.is_public_api,
@@ -67,7 +67,7 @@ class RequestContext(context.RequestContext):
     def from_dict(cls, values, **kwargs):
         kwargs.setdefault('is_public_api', values.get('is_public_api', False))
         if 'domain_id' in values:
-            kwargs.setdefault('user_domain', values['domain_id'])
+            kwargs.setdefault('user_domain_id', values['domain_id'])
         return super(RequestContext, RequestContext).from_dict(values,
                                                                **kwargs)
 
@@ -88,7 +88,7 @@ def get_admin_context():
     """Create an administrator context."""
 
     context = RequestContext(auth_token=None,
-                             tenant=None,
+                             project_id=None,
                              is_admin=True,
                              overwrite=False)
     return context
